@@ -13,11 +13,15 @@
   
  * <kbd>npm start</kbd> ==> After cloning this repository you can run npm start in terminal to start server on localhost then you can try this api on local host.
  
- * <kbd>/product</kdb> ==> Add this to localhost link to get all data of product (sorted from newest to oldest) and to post data in database.
+ * <kbd>/product</kbd> ==> Add this to localhost link to get all data of product (sorted from newest to oldest) and to post data in database.
  
  * <kbd>/product/category?cat={category name}</kbd> ==> Add this to localhost link to get data according to category givent in query.4
  
  * <kbd>/product/:id</kbd> ==> Add this to localhost link to get product data of that particular id or to delete data data of particular id.
+ 
+ * <kbd>{error: true, products: "server error! something went wrong"}</kbd> ==> If you see this as response It means you made a bad request check everthing once and then try again
+
+* <kbd>{error: true}</kbd> ==> When there is any error occurs you will see error is true in response. This is for giving frontend message of any error and where that error is occuring.
 <hr/>
 
 ## TechStacks
@@ -29,12 +33,6 @@
 * cors
 * nodemon
 <hr/>
-
-## Deployed Link
-
-```bash
-  https://deepu2560-weather-app.vercel.app/
-```
 
 
 # Features
