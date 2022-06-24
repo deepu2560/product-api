@@ -103,5 +103,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// deleting product from database
+router.delete("/:id", async (req, res) => {
+  try {
+    // deleteing product from database
+    const products = await Product.findByIdAndDelete(req.params.id)
+      .lean()
+      .exec();
+
+    console.log("==> deleting product by id :- " + req.params.id);
+    res.status(200).send({ error: false, products: "Product deleted" });
+  } catch (error) {
+    console.log("==> deleting Product by id Error :- " + error);
+    res.status(500).send({ error: true, products: "id is not proper" });
+  }
+});
+
 // exporting router
 module.exports = router;
