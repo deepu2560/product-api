@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// schema for product model
 const productModel = new mongoose.Schema(
   {
     name: { type: String, require: true },
@@ -14,4 +15,5 @@ const productModel = new mongoose.Schema(
   },
 );
 
+// exporting product model
 module.exports = mongoose.model("data", productModel);

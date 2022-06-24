@@ -4,6 +4,7 @@ const router = express.Router();
 
 const Product = require("../Models/productModel");
 
+// posting product data in local product database and datas collection
 router.post("", async (req, res) => {
   try {
     const products = await Product.create(req.body);
@@ -18,14 +19,17 @@ router.post("", async (req, res) => {
   }
 });
 
+// getting all data from database
 router.get("", async (req, res) => {
   try {
+    // pagination
     const size = req.query.size || 10;
-
     const page = req.query.page || 1;
 
+    // find() for getting all data
     const products = await Product.find()
       .skip((page - 1) * size)
+      .sort({ createdAt: -1 })
       .limit(size)
       .lean()
       .exec();
@@ -41,14 +45,17 @@ router.get("", async (req, res) => {
   }
 });
 
+// getting data as per category
 router.get("/category", async (req, res) => {
   try {
+    // pagination
     const size = req.query.size || 10;
-
     const page = req.query.page || 1;
 
+    // find({category: req.query.cat}) for getting data of a perticular category
     const products = await Product.find({ category: req.query.cat })
       .skip((page - 1) * size)
+      .sort({ createdAt: -1 })
       .limit(size)
       .lean()
       .exec();
@@ -75,6 +82,7 @@ router.get("/category", async (req, res) => {
   }
 });
 
+// getting data for a perticular id of product
 router.get("/:id", async (req, res) => {
   try {
     const products = await Product.findById(req.params.id).lean().exec();
@@ -95,4 +103,5 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// exporting router
 module.exports = router;
